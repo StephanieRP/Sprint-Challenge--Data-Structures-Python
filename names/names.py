@@ -11,12 +11,18 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# adding both lists to a new variable
+sorted_names = names_1 + names_2
+# sorting the list
+sorted_names.sort()
+
+# iterating over the list
+for index in range(len(sorted_names)):
+    # if two names match, then add to duplicates list
+    if sorted_names[index] == sorted_names[index - 1]:
+        duplicates.append(sorted_names[index])
+
 
 end_time = time.time()
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
-
+print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print(f"runtime: {end_time - start_time} seconds")
